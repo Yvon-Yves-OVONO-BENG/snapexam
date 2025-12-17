@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.react-hot-toast-success::after,
+.react-hot-toast-error::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  background: #4ade80; /* vert pour succès, tu peux mettre rouge pour erreur */
+  animation: toast-progress 4s linear forwards;
+  width: 100%;
+}
+
+@keyframes toast-progress {
+  from { width: 100%; }
+  to { width: 0%; }
+}
+
+.card-input {
+  background-color: white;
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 40px 25px;
+  padding-right: 50px;
+}
+
+
+/* S'assurer que la modale apparaît AU-DESSUS de tout */
+.modal-backdrop,
+.modal {
+  z-index: 9999 !important;
+}
+
+/* Centrage correct + hauteur auto */
+.modal-dialog {
+  margin: auto;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Permet le scroll si la modale est trop grande */
+.modal-content {
+  max-height: 90vh;
+  overflow-y: auto;
+}
