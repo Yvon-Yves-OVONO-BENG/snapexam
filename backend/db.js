@@ -1,19 +1,19 @@
-// db.js
-import pkg from "pg";
-const { Pool } = pkg;
+const { Sequelize } = require("sequelize");
 
-// ⚠️ À adapter avec tes identifiants PostgreSQL
-const pool = new Pool({
-  user: "postgres",        // ton utilisateur PostgreSQL
-  host: "localhost",       // ou l’IP/nom du serveur
-  database: "annuaire",     // nom de ta base de données
-  password: "postgresql",  // ton mot de passe PostgreSQL
-  port: 5432,              // port par défaut de PostgreSQL
-});
+const sequelize = new Sequelize(
+  process.env.DB_NAME,
+  process.env.DB_USER,
+  process.env.DB_PASSWORD,
+  {
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    dialect: process.env.DB_DIALECT, // 'mysql'
+    logging: false,
+  }
+);
 
-// Vérification de la connexion
-pool.connect()
-  .then(() => console.log("✅ Connexion à mysql réussie"))
-  .catch(err => console.error("❌ Erreur de connexion à mysql", err));
+sequelize.authenticate()
+  .then(() => console.log("Database connected!"))
+  .catch(err => console.error("DB connection error:", err));
 
-export default pool;
+module.exports = sequelize;
